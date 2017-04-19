@@ -56,6 +56,15 @@
 
         <li>
 
+            <a class="apidocElementLiA" href="#apidoc.element.md5-file.md5-file">
+            function <span class="apidocSignatureSpan"></span>md5-file
+            <span class="apidocSignatureSpan">(filename, cb)</span>
+            </a>
+
+        </li>
+
+        <li>
+
             <a class="apidocElementLiA" href="#apidoc.element.md5-file.promise">
             function <span class="apidocSignatureSpan">md5-file.</span>promise
             <span class="apidocSignatureSpan">(filename)</span>
@@ -100,6 +109,34 @@
 
 <div class="apidocSectionDiv">
 <h1><a href="#apidoc.module.md5-file" id="apidoc.module.md5-file">module md5-file</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.md5-file.md5-file" id="apidoc.element.md5-file.md5-file">
+        function <span class="apidocSignatureSpan"></span>md5-file
+        <span class="apidocSignatureSpan">(filename, cb)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function md5File(filename, cb) {
+  if (typeof cb !== 'function') throw new TypeError('Argument cb must be a function')
+
+  var output = crypto.createHash('md5')
+  var input = fs.createReadStream(filename)
+
+  input.on('error', function (err) {
+    cb(err)
+  })
+
+  output.once('readable', function () {
+    cb(null, output.read().toString('hex'))
+  })
+
+  input.pipe(output)
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
 
 
     <h2>
